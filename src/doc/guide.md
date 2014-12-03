@@ -1,6 +1,6 @@
-% The Rust Guide
+% Rust开发指南
 
-Hey there! Welcome to the Rust guide. This is the place to be if you'd like to
+欢迎来到Rust开发指南. This is the place to be if you'd like to
 learn how to program in Rust. Rust is a systems programming language with a
 focus on "high-level, bare-metal programming": the lowest level control a
 programming language can give you, but with zero-cost, higher level
@@ -15,7 +15,7 @@ more advanced things.
 
 Sound good? Let's go!
 
-# Installing Rust
+# 安装Rust
 
 The first step to using Rust is to install it! There are a number of ways to
 install Rust, but the easiest is to use the `rustup` script. If you're on
