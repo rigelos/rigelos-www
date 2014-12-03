@@ -1,26 +1,20 @@
-% Rust Documentation
+% Rust文档
 
-Welcome to the Rust documentation! You can use the section headings above
-to jump to any particular section.
+欢迎来到Rust的文档! 你可以利用头部的的链接跳到特定的部分。
 
-# Getting Started
+# 开始
 
-If you haven't seen Rust at all yet, the first thing you should read is the [30
-minute intro](intro.html). It will give you an overview of the basic ideas of Rust
-at a high level.
+如果你一点也不了解Rust, 你要做的第一件事是阅读[30分钟介绍](intro.html). 它让你看一下Rust的整体思路。
 
-Once you know you really want to learn Rust, the next step is reading [the
-guide](guide.html). It is a lengthy explanation of Rust, its syntax, and its
-concepts. Upon completing the guide, you'll be an intermediate Rust developer,
-and will have a good grasp of the fundamental ideas behind Rust.
+一旦你知道你真的想学习Rust, 下一步就是阅读[开发指南](guide.html). 它是对Rust的语法和概念的冗长的解释。 在完成阅读开发指南后, 你将会成为Rust的中级开发者,
+并且对Rust背后的基本理念有了很好的把握。
 
-# Community & Getting Help
+# 社区和获取帮助
 
-If you need help with something, or just want to talk about Rust with others,
-there's a few places you can do that:
+如果你在某些方面需要帮助, 或者想和别人讨论Rust,
+这里有几个交流的地方可以做这些事情:
 
-The Rust IRC channels on [irc.mozilla.org](http://irc.mozilla.org/) are the
-fastest way to get help.
+The Rust IRC channels on [irc.mozilla.org](http://irc.mozilla.org/) 是获取帮助最快的办法.
 [`#rust`](http://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust) is
 the general discussion channel, and you'll find people willing to help you with
 any questions you may have.
@@ -43,30 +37,30 @@ discussion about Rust.
 There is also a [developer forum](http://discuss.rust-lang.org/), where the
 development of Rust itself is discussed.
 
-# Specification
+# 规格说明
 
-Rust does not have an exact specification, but an effort to describe as much of
+Rust没有精确的语言规格说明, but an effort to describe as much of
 the language in as much detail as possible is in [the reference](reference.html).
 
-# Guides
+# 开发指南
 
 Rust Guides are in-depth looks at a particular topic that's relevant to Rust
 development. If you're trying to figure out how to do something, there may be
 a guide that can help you out:
 
-* [Strings](guide-strings.html)
-* [Pointers](guide-pointers.html)
-* [References and Lifetimes](guide-lifetimes.html)
-* [Crates and modules](guide-crates.html)
-* [Tasks and Communication](guide-tasks.html)
-* [Error Handling](guide-error-handling.html)
+* [字符串](guide-strings.html)
+* [指针](guide-pointers.html)
+* [引用和生存周期](guide-lifetimes.html)
+* [Crates和模块](guide-crates.html)
+* [Task和Task通信](guide-tasks.html)
+* [错误处理](guide-error-handling.html)
 * [Foreign Function Interface](guide-ffi.html)
-* [Writing Unsafe and Low-Level Code](guide-unsafe.html)
-* [Macros](guide-macros.html)
-* [Testing](guide-testing.html)
-* [Compiler Plugins](guide-plugin.html)
+* [书写不安全的低级代码](guide-unsafe.html)
+* [宏](guide-macros.html)
+* [测试](guide-testing.html)
+* [编译插件](guide-plugin.html)
 
-# Tools
+# 工具
 
 Rust's still a young language, so there isn't a ton of tooling yet, but the
 tools we have are really nice.
@@ -77,7 +71,7 @@ lots of good documentation.
 [The `rustdoc` manual](rustdoc.html) contains information about Rust's
 documentation tool.
 
-# FAQs
+# 常见问题
 
 There are questions that are asked quite often, and so we've made FAQs for them:
 
@@ -86,14 +80,14 @@ There are questions that are asked quite often, and so we've made FAQs for them:
 * [Project FAQ](complement-project-faq.html)
 * [How to submit a bug report](complement-bugreport.html)
 
-# The standard library
+# 标准库
 
 We have [API documentation for the entire standard
 library](std/index.html). There's a list of crates on the left with more
 specific sections, or you can use the search bar at the top to search for
 something if you know its name.
 
-# External documentation
+# 外部文档
 
 *Note: While these are great resources for learning Rust, they may track a
 particular version of Rust that is likely not exactly the same as that for
