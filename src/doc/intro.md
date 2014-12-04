@@ -5,31 +5,25 @@ Rust是一个现代的系统编程语言，它关注于安全和速度。它没�
 这个介绍会让你粗略的了解Rust是什么样子的，遗漏了大部分的细节。 它不需要预先的系统编程经验, 但是如果你之前有过了大括号式的语言(如:C或JavaScript)的使用经验, 你会发现语法相当简单。
 这个设计理念比语法更重要，所以你不用担心还没有获取最终的语言细节: 你可以阅读[开发指南](guide.html)获取更完整的解释.
 
-Because this is about high-level concepts, you don't need to actually install
-Rust to follow along. If you'd like to anyway, check out [the
-homepage](http://rust-lang.org) for explanation.
+因为这些是高级的设计理念, 你不必真的安装Rust. 如果你真的想安装, 请阅读[主页](http://rust-lang.org)上面的说明.
 
-To show off Rust, let's talk about how easy it is to get started with Rust.
-Then, we'll talk about Rust's most interesting feature, **ownership**, and
-then discuss how it makes concurrency easier to reason about. Finally,
-we'll talk about how Rust breaks down the perceived dichotomy between speed
-and safety.
+为了演示Rust, 让我们讨论下使用Rust是多么的简单。
+然后我们会探讨一下Rust最兴趣的特性, **所有权**, 之后讨论如何使并发变得很简单。 最后,
+我们会谈一下Rust如果在速度和安全方面做的平衡。
 
 # 工具
 
-Getting started on a new Rust project is incredibly easy, thanks to Rust's
-package manager, [Cargo](http://crates.io).
+开始一个新的Rust工程难以置信的简单, 这需要感谢Rust的包管理器[Cargo](http://crates.io).
 
-To start a new project with Cargo, use `cargo new`:
+用Cargo开始一个新工程, 使用`cargo new`:
 
 ```{bash}
 $ cargo new hello_world --bin
 ```
 
-We're passing `--bin` because we're making a binary program: if we
-were making a library, we'd leave it off.
+我们传递 `--bin` 因为我们要开发一个二进制程序: 如果我们开发一个库，我们就不使用这个参数。
 
-Let's check out what Cargo has generated for us:
+让我们检查下Cargo为我们产生的文件:
 
 ```{bash}
 $ cd hello_world
@@ -42,7 +36,7 @@ $ tree .
 1 directory, 2 files
 ```
 
-This is all we need to get started. First, let's check out `Cargo.toml`:
+这就是我们开始的全部文件。 首先, 让我们查看下`Cargo.toml`:
 
 ```{toml}
 [package]
@@ -52,10 +46,9 @@ version = "0.0.1"
 authors = ["Your Name <you@example.com>"]
 ```
 
-This is called a **manifest**, and it contains all of the metadata that Cargo
-needs to compile your project. 
+这个叫做 **manifest**, 这个文件包括了Cargo编译工程的所有元数据。
 
-Here's what's in `src/main.rs`:
+这是 `src/main.rs` 里面的内容:
 
 ```{rust}
 fn main() {
@@ -374,14 +367,14 @@ The point is, the Rust compiler and its notion of ownership has saved us from a
 bug that would crash the program. We've achieved safety, at compile time,
 without needing to rely on a garbage collector to handle our memory.
 
-# Concurrency
+# 并发
 
 Rust's ownership model can help in other ways, as well. For example, take
 concurrency. Concurrency is a big topic, and an important one for any modern
 programming language. Let's take a look at how ownership can help you write
 safe concurrent programs.
 
-Here's an example of a concurrent Rust program:
+这里是一个Rust的并发程序示例程序:
 
 ```{rust}
 fn main() {
@@ -393,7 +386,7 @@ fn main() {
 }
 ```
 
-This program creates ten threads, who all print `Hello, world!`. The `spawn`
+这个程序创建了10个线程, 这些线程全部打印`Hello, world!`。 The `spawn`
 function takes one argument, a `proc`. 'proc' is short for 'procedure,' and is
 a form of closure. This closure is executed in a new thread, created by `spawn`
 itself.
@@ -559,7 +552,7 @@ This version uses an iterator that yields each element of the vector in turn.
 Because we have a reference to the element, rather than the whole vector itself,
 there's no array access bounds to check.
 
-# Learning More
+# 学习更多
 
 I hope that this taste of Rust has given you an idea if Rust is the right
 language for you. We talked about Rust's tooling, how encoding ownership into
