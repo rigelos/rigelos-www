@@ -56,8 +56,7 @@ fn main() {
 }
 ```
 
-Cargo generated a 'hello world' for us. We'll talk more about the syntax here
-later, but that's what Rust code looks like! Let's compile and run it:
+Cargo 产生了一个 'hello world'程序. 我们稍后将会讨论语法，但是这就是Rust的代码的样子。 让我们编译并运行它:
 
 ```{bash}
 $ cargo run
@@ -66,8 +65,7 @@ $ cargo run
 Hello, world!
 ```
 
-Using an external dependency in Rust is incredibly easy. You add a line to
-your `Cargo.toml`:
+使用外部的依赖也是难以置信的简单。你需要添加一行到 `Cargo.toml`:
 
 ```{toml}
 [package]
@@ -81,11 +79,9 @@ authors = ["Your Name <someone@example.com>"]
 git = "https://github.com/rust-lang/semver.git"
 ```
 
-You added the `semver` library, which parses version numbers and compares them
-according to the [SemVer specification](http://semver.org/).
+你将会添加 `semver`库, 这个库可以解析版本号并且根据[SemVer规范](http://semver.org/)对比。
 
-Now, you can pull in that library using `extern crate` in
-`main.rs`.
+现在你可以在`main.rs`中使用`extern crate`拉取那个库。
 
 ```{rust,ignore}
 extern crate semver;
@@ -132,7 +128,7 @@ tools](http://crates.io/native-build.html), if you need to.)
 
 Enough about tools, let's talk code!
 
-# Ownership
+# 所有权
 
 Rust's defining feature is 'memory safety without garbage collection.' Let's
 take a moment to talk about what that means. **Memory safety** means that the
