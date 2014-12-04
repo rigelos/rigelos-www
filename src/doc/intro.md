@@ -1,14 +1,9 @@
-% A 30-minute Introduction to Rust
+% Rust的30分钟介绍
 
-Rust is a modern systems programming language focusing on safety and speed. It
-accomplishes these goals by being memory safe without using garbage collection.
+Rust是一个现代的系统编程语言，它关注于安全和速度。它没有使用垃圾收集而达到了内存安全的目的。
 
-This introduction will give you a rough idea of what Rust is like, eliding many
-details. It does not require prior experience with systems programming, but you
-may find the syntax easier if you've used a 'curly brace' programming language
-before, like C or JavaScript. The concepts are more important than the syntax,
-so don't worry if you don't get every last detail: you can read [the
-Guide](guide.html) to get a more complete explanation.
+这个介绍会让你粗略的了解Rust是什么样子的，遗漏了大部分的细节。 它不需要预先的系统编程经验, 但是如果你之前有过了大括号式的语言(如:C或JavaScript)的使用经验, 你会发现语法相当简单。
+这个设计理念比语法更重要，所以你不用担心还没有获取最终的语言细节: 你可以阅读[开发指南](guide.html)获取更完整的解释.
 
 Because this is about high-level concepts, you don't need to actually install
 Rust to follow along. If you'd like to anyway, check out [the
@@ -20,7 +15,7 @@ then discuss how it makes concurrency easier to reason about. Finally,
 we'll talk about how Rust breaks down the perceived dichotomy between speed
 and safety.
 
-# Tools
+# 工具
 
 Getting started on a new Rust project is incredibly easy, thanks to Rust's
 package manager, [Cargo](http://crates.io).

@@ -17,26 +17,20 @@ $ curl -s https://static.rust-lang.org/rustup.sh | sudo sh
 
 (如果你很担心`curl | sudo sh`, 请放弃上面的方法, 继续阅读)
 
-If you're on Windows, please download either the [32-bit
-installer](https://static.rust-lang.org/dist/rust-nightly-i686-w64-mingw32.exe)
-or the [64-bit
-installer](https://static.rust-lang.org/dist/rust-nightly-x86_64-w64-mingw32.exe)
-and run it.
+如果你使用的是Windows系统, 请下载 [32位安装程序](https://static.rust-lang.org/dist/rust-nightly-i686-w64-mingw32.exe)
+或者[64位安装程序](https://static.rust-lang.org/dist/rust-nightly-x86_64-w64-mingw32.exe)
+并运行。
 
-If you decide you don't want Rust anymore, we'll be a bit sad, but that's okay.
-Not every programming language is great for everyone. Just pass an argument to
-the script:
+如果你决定不再需要Rust, 我们可能会有点伤心。
+并不是所有语言对每个人都是适合的。 只需要传递一个参数到脚本:
 
 ```{ignore}
 $ curl -s https://static.rust-lang.org/rustup.sh | sudo sh -s -- --uninstall
 ```
 
-If you used the Windows installer, just re-run the `.exe` and it will give you
-an uninstall option.
+如果你使用的是Windows安装程序，只需要重新运行`.exe`它会给你卸载选项。
 
-You can re-run this script any time you want to update Rust. Which, at this
-point, is often. Rust is still pre-1.0, and so people assume that you're using
-a very recent Rust.
+你可以重新运行这个脚本在你想更新Rust的时候。更新是是经常的. Rust依然是1.0之前的版本, 所以人们假定你用的一个非常新的版本。
 
 This brings me to one other point: some people, and somewhat rightfully so, get
 very upset when we tell you to `curl | sudo sh`. And they should be! Basically,
@@ -48,44 +42,35 @@ Rust from Source](https://github.com/rust-lang/rust#building-from-source), or
 promise that this method will not be the way to install Rust forever: it's just
 the easiest way to keep people updated while Rust is in its alpha state.
 
-Oh, we should also mention the officially supported platforms:
+我们必须提一下官方支持的操作系统平台:
 
 * Windows (7, 8, Server 2008 R2)
-* Linux (2.6.18 or later, various distributions), x86 and x86-64
-* OSX 10.7 (Lion) or greater, x86 and x86-64
+* Linux (2.6.18或之后的各种发行版), x86 和 x86-64
+* OSX 10.7 (Lion) 或更高级的版本, x86 和 x86-64
 
-We extensively test Rust on these platforms, and a few others, too, like
-Android. But these are the ones most likely to work, as they have the most
-testing.
+我们在这些平台上做了全面的测试, 在一些其它平台也做了类似测试，比如Android. 但是上面这些平台是Rust最有可能工作的平台, 所以对他们做了最多的测试。
 
-Finally, a comment about Windows. Rust considers Windows to be a first-class
-platform upon release, but if we're honest, the Windows experience isn't as
-integrated as the Linux/OS X experience is. We're working on it! If anything
-does not work, it is a bug. Please let us know if that happens. Each and every
-commit is tested against Windows just like any other platform.
+最后, 对Window版本做个注解. Rust认为Windows是第一类需要支持的操作系统, 但是诚实的说Windows上面的使用体验和Linux/OS X上面是不一致的. 但是我们一直让他们尽可能的一致! 如果有任何功能不起作用了, 它是一个bug。
+请让我们知道bug发生了。每一个提交都会和别的平台一样, 在Windows平台测试。
 
-If you've got Rust installed, you can open up a shell, and type this:
+如果你已经安装了Rust, 你可以打开shell, 并输入:
 
 ```{ignore}
 $ rustc --version
 ```
 
-You should see some output that looks something like this:
+你应该会看到类似如下的输出:
 
 ```{ignore}
 rustc 0.12.0-nightly (b7aa03a3c 2014-09-28 11:38:01 +0000)
 ```
 
-If you did, Rust has been installed successfully! Congrats!
+如果你看到了，Rust已经成功安装! 祝贺!
 
-If not, there are a number of places where you can get help. The easiest is
-[the #rust IRC channel on irc.mozilla.org](irc://irc.mozilla.org/#rust), which
-you can access through
-[Mibbit](http://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust). Click
-that link, and you'll be chatting with other Rustaceans (a silly nickname we
-call ourselves), and we can help you out. Other great resources include [our
-mailing list](https://mail.mozilla.org/listinfo/rust-dev), [the /r/rust
-subreddit](http://www.reddit.com/r/rust), and [Stack
+如果没有安装成功，你可以从这几个地方获取帮助。 最简单的是
+[#rust IRC 在 irc.mozilla.org上的交流渠道](irc://irc.mozilla.org/#rust), 你可以通过[Mibbit](http://chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust)访问它。 点击那个链接, 
+你可以和其他的Rust开发者(Rustaceans 我们自己称呼自己的愚蠢昵称)聊天, 我们可以帮助你。其它的资源比如[我们的邮件列表](https://mail.mozilla.org/listinfo/rust-dev), [the /r/rust
+subreddit](http://www.reddit.com/r/rust), 和 [Stack
 Overflow](http://stackoverflow.com/questions/tagged/rust).
 
 # Hello, world!
@@ -586,7 +571,7 @@ This reveals two interesting things about Rust: it is an expression-based
 language, and semicolons are different than in other 'curly brace and
 semicolon'-based languages. These two things are related.
 
-## Expressions vs. Statements
+## 表达式 vs. 语句
 
 Rust is primarily an expression based language. There are only two kinds of
 statements, and everything else is an expression.
@@ -815,7 +800,7 @@ There are some additional ways to define functions, but they involve features
 that we haven't learned about yet, so let's just leave it at that for now.
 
 
-# Comments
+# 注释
 
 Now that we have some functions, it's a good idea to learn about comments.
 Comments are notes that you leave to other programmers to help explain things
