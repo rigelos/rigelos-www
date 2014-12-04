@@ -1,33 +1,21 @@
 % Rust开发指南
 
-欢迎来到Rust开发指南. This is the place to be if you'd like to
-learn how to program in Rust. Rust is a systems programming language with a
-focus on "high-level, bare-metal programming": the lowest level control a
-programming language can give you, but with zero-cost, higher level
-abstractions, because people aren't computers. We really think Rust is
-something special, and we hope you do too.
+欢迎来到Rust开发指南. 这里你可以学习如何使用Rust编程。 Rust是一个系统级的开发语言, 它主要关注"高级语言特性和低级的裸机编程": 可以控制非常低级的东西, 但是拥有高级的零除, 抽象特性, 因为毕竟人不是电脑. 我们真的认为Rust是很特别的东西，并且也希望你有同感。
 
-To show you how to get going with Rust, we're going to write the traditional
-"Hello, World!" program. Next, we'll introduce you to a tool that's useful for
-writing real-world Rust programs and libraries: "Cargo." After that, we'll talk
-about the basics of Rust, write a little program to try them out, and then learn
-more advanced things.
+为了给你展示如何使用Rust, 我们将会写一个传统的"Hello, World!"程序. 接下来, 我们会介绍一个开发Rust程序和库非常有用的工具: "Cargo." 在这之后, 我们会讨论Rust的开发基础,
+写一个小的程序去说明它，然后学习一些高级的特性。
 
-Sound good? Let's go!
+听起来不错? 马上开始!
 
 # 安装Rust
 
-The first step to using Rust is to install it! There are a number of ways to
-install Rust, but the easiest is to use the `rustup` script. If you're on
-Linux or a Mac, all you need to do is this (note that you don't need to type
-in the `$`s, they just indicate the start of each command):
+使用Rust的第一步是安装Rust! 有几种办法可以安装Rust, 最简单的办法是使用`rustup`脚本。 如果你在Linux或者Mac上面工作, 如下就是你全部需要做的(注意你不需要输入`$`, 这只是每个命令的开始提示):
 
 ```{ignore}
 $ curl -s https://static.rust-lang.org/rustup.sh | sudo sh
 ```
 
-(If you're concerned about `curl | sudo sh`, please keep reading. Disclaimer
-below.)
+(如果你很担心`curl | sudo sh`, 请放弃上面的方法, 继续阅读)
 
 If you're on Windows, please download either the [32-bit
 installer](https://static.rust-lang.org/dist/rust-nightly-i686-w64-mingw32.exe)
@@ -265,7 +253,7 @@ your project grows, you'll want something to help you manage all of the options
 that it has, and to make it easy to share your code with other people and
 projects.
 
-# Hello, Cargo!
+# Cargo你好!
 
 [Cargo](http://crates.io) is a tool that Rustaceans use to help manage their
 Rust projects. Cargo is currently in an alpha state, just like Rust, and so it
@@ -5165,7 +5153,7 @@ as you can see, there's no overhead of deciding which version to call here,
 hence 'statically dispatched.' The downside is that we have two copies of
 the same function, so our binary is a little bit larger.
 
-# Tasks
+# Tasks任务
 
 Concurrency and parallelism are topics that are of increasing interest to a
 broad subsection of software developers. Modern computers are often multi-core,
@@ -5282,7 +5270,7 @@ value, we can call `get()` on it. This will block until the result is done,
 but if it's finished computing in the background, we'll just get the value
 immediately.
 
-## Success and failure
+## 成功和失败
 
 Tasks don't always succeed, they can also panic. A task that wishes to panic
 can call the `panic!` macro, passing a message:
@@ -5313,7 +5301,7 @@ This task will randomly panic or succeed. `task::try` returns a `Result`
 type, so we can handle the response like any other computation that may
 fail.
 
-# Macros
+# 宏
 
 One of Rust's most advanced features is its system of **macro**s. While
 functions allow you to provide abstractions over values and operations, macros
@@ -5404,7 +5392,7 @@ Macros are a very advanced and still slightly experimental feature, but they don
 require a deep understanding to be called, since they look just like functions. The
 Guide can help you if you want to write your own.
 
-# Unsafe
+# 不安全的编程
 
 Finally, there's one more Rust concept that you should be aware of: `unsafe`.
 There are two circumstances where Rust's safety provisions don't work well.
@@ -5437,7 +5425,7 @@ what you're doing. The vast majority of Rust developers will only interact with
 it when doing FFI, and advanced library authors may use it to build certain
 kinds of abstraction.
 
-# Conclusion
+# 结论
 
 We covered a lot of ground here. When you've mastered everything in this Guide,
 you will have a firm grasp of basic Rust development. There's a whole lot more
