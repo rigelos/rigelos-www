@@ -101,8 +101,7 @@ fn main() {
 }
 ```
 
-Again, we'll discuss the exact details of all of this syntax soon. For now,
-let's compile and run it:
+再次强调下，我们很快会讨论语言的精确的语法细节。现在，我们编译运行它:
 
 ```{bash}
 $ cargo run
@@ -113,11 +112,8 @@ $ cargo run
 Versions compared successfully!
 ```
 
-Because we only specified a repository without a version, if someone else were
-to try out our project at a later date, when `semver` was updated, they would
-get a different, possibly incompatible version. To solve this problem, Cargo
-produces a file, `Cargo.lock`, which records the versions of any dependencies.
-This gives us repeatable builds.
+因为我们仅仅指定了一个代码仓库而没有指定它的版本，如果有人在稍后的时候，运行我们的编译命令，而此时`semver`, 已经更新了，他们可能会获取一个和上面不一致的版本。
+为了解决这个问题，Cargo产生了一个文件`Cargo.lock`, 他会记录依赖的版本。这个文件保证了我们可以重复构建。
 
 There is a lot more here, and this is a whirlwind tour, but you should feel
 right at home if you've used tools like [Bundler](http://bundler.io/),
@@ -126,17 +122,12 @@ There's no `Makefile`s or endless `autotools` output here. (Rust's tooling does
 [play nice with external libraries written in those
 tools](http://crates.io/native-build.html), if you need to.)
 
-Enough about tools, let's talk code!
+工具已经讨论的足够多了， 让我们看下代码吧!
 
 # 所有权
 
-Rust's defining feature is 'memory safety without garbage collection.' Let's
-take a moment to talk about what that means. **Memory safety** means that the
-programming language eliminates certain kinds of bugs, such as [buffer
-overflows](http://en.wikipedia.org/wiki/Buffer_overflow) and [dangling
-pointers](http://en.wikipedia.org/wiki/Dangling_pointer). These problems occur
-when you have unrestricted access to memory. As an example, here's some Ruby
-code:
+Rust定义的特征是'内存安全没有垃圾回收机制'。让我们花点时间讨论下这个的含义。**内存安全** 意味着这个编程语言消除了某类bug, 比如[缓冲区溢出](http://en.wikipedia.org/wiki/Buffer_overflow)
+和[悬空指针](http://en.wikipedia.org/wiki/Dangling_pointer)。这些问题导致了没有限制的内存访问。这有一个Ruby的代码例子:
 
 ```{ruby}
 v = [];

@@ -1,6 +1,6 @@
-% The Rust Reference
+% Rust参考手册
 
-# Introduction
+# 介绍
 
 This document is the primary reference for the Rust programming language. It
 provides three kinds of material:
