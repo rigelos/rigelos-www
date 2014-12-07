@@ -1,6 +1,6 @@
 % The Rust Foreign Function Interface Guide
 
-# Introduction
+# 介绍
 
 This guide will use the [snappy](https://github.com/google/snappy)
 compression/decompression library as an introduction to writing bindings for
