@@ -115,19 +115,18 @@ Versions compared successfully!
 因为我们仅仅指定了一个代码仓库而没有指定它的版本，如果有人在稍后的时候，运行我们的编译命令，而此时`semver`, 已经更新了，他们可能会获取一个和上面不一致的版本。
 为了解决这个问题，Cargo产生了一个文件`Cargo.lock`, 他会记录依赖的版本。这个文件保证了我们可以重复构建。
 
-There is a lot more here, and this is a whirlwind tour, but you should feel
-right at home if you've used tools like [Bundler](http://bundler.io/),
-[npm](https://www.npmjs.org/), or [pip](https://pip.pypa.io/en/latest/).
-There's no `Makefile`s or endless `autotools` output here. (Rust's tooling does
+这里有很多的工具， 这个文章只是快速的介绍，如果你使用了以下的工具，你要觉得很自然:比如 [Bundler](http://bundler.io/),
+[npm](https://www.npmjs.org/), 或者 [pip](https://pip.pypa.io/en/latest/).
+这里没有`Makefile`或者无限的`autotools`输出. (Rust's tooling does
 [play nice with external libraries written in those
-tools](http://crates.io/native-build.html), if you need to.)
+tools](http://crates.io/native-build.html), 如果你需要的话.)
 
 工具已经讨论的足够多了， 让我们看下代码吧!
 
 # 所有权
 
-Rust定义的特征是'内存安全没有垃圾回收机制'。让我们花点时间讨论下这个的含义。**内存安全** 意味着这个编程语言消除了某类bug, 比如[缓冲区溢出](http://en.wikipedia.org/wiki/Buffer_overflow)
-和[悬空指针](http://en.wikipedia.org/wiki/Dangling_pointer)。这些问题导致了没有限制的内存访问。这有一个Ruby的代码例子:
+Rust定义的特征是'内存安全没有垃圾回收机制'。让我们花点时间讨论下这句话的含义。**内存安全** 意味着这个编程语言消除了某类bug, 比如[缓冲区溢出](http://en.wikipedia.org/wiki/Buffer_overflow)
+和[悬空指针](http://en.wikipedia.org/wiki/Dangling_pointer)。这些问题导致了无限制的内存访问。这有一个Ruby的代码例子:
 
 ```{ruby}
 v = [];
@@ -141,18 +140,15 @@ v.push("world");
 puts x
 ```
 
-We make an array, `v`, and then call `push` on it. `push` is a method which
-adds an element to the end of an array.
+我们声明了一个数组`v`, 然后调用该数组的`push`方法. `push`可以在数组尾部添加一个元素。
 
-Next, we make a new variable, `x`, that's equal to the first element of
-the array. Simple, but this is where the 'bug' will appear.
+接下来, 我们声明了一个新的变量`x`, 这个变量等于数组的第一个元素。非常简单，但是一个bug将会出现。
 
-Let's keep going. We then call `push` again, pushing "world" onto the
-end of the array. `v` now is `["Hello", "world"]`.
+让我们继续。 我们再次调用`push`方法, 把"world"推入数组的尾部。`v`现在是`["Hello", "world"]`.
 
-Finally, we print `x` with the `puts` method. This prints "Hello."
+最后, 我们用`puts`方法打印`x`。 这个会打印出"Hello"。
 
-All good? Let's go over a similar, but subtly different example, in C++:
+所有都很正常? 让我们看下另外一个相似但稍有不同的例子, 用C++书写的:
 
 ```{cpp}
 #include<iostream>
@@ -172,13 +168,11 @@ int main() {
 }
 ```
 
-It's a little more verbose due to the static typing, but it's almost the same
-thing. We make a `std::vector` of `std::string`s, we call `push_back` (same as
-`push`) on it, take a reference to the first element of the vector, call
-`push_back` again, and then print out the reference.
+由于静态的类型这个代码更加详细, 但是它和上面几乎是一样的东西。 我们声明了一个`std::string`类型的`std::vector`, 我们调用它的`push_back`方法 (和上面的
+`push`一样), 拿到vector第一个元素的引用, 然后再次调用`push_back`, 然后打印这个引用出来。
 
-There's two big differences here: one, they're not _exactly_ the same thing,
-and two...
+这里有两个非常大的不同: 第一, 他们是不一样的,
+第二，...
 
 ```{bash}
 $ g++ hello.cpp -Wall -Werror
@@ -186,16 +180,12 @@ $ ./a.out
 Segmentation fault (core dumped)
 ```
 
-A crash! (Note that this is actually system-dependent. Because referring to an
-invalid reference is undefined behavior, the compiler can do anything,
-including the right thing!) Even though we compiled with flags to give us as
-many warnings as possible, and to treat those warnings as errors, we got no
-errors. When we ran the program, it crashed.
+一个崩溃! (注意这个崩溃是独立于系统的。因为是一个无效的索引，所以导致了一个不确定的行为, 编译器可以做些事情吗，包括正确的事情!)
+即使我们编译的时候传递了参数给编译器，让它尽可能多的提供错误和警告,并让编译器把警告当作错误处理，但是我们没有收到任何错误信息。
+当我们可以运行程序的时候，它崩溃了。
 
-Why does this happen? When we append to an array, its length changes. Since
-its length changes, we may need to allocate more memory. In Ruby, this happens
-as well, we just don't think about it very often. So why does the C++ version
-segfault when we allocate more memory?
+为什么会发生这种事情? 当我们追加一个元素到数组, 它的长度就发生了变化。既然长度变化了，我们就需要分配更多的内存。
+在Ruby中, 这也会发生, 但是我们经常不会考虑这一点。但是为什么C++版本的代码分配更多内存的时候会导致段错误？
 
 The answer is that in the C++ version, `x` is a **reference** to the memory
 location where the first element of the array is stored. But in Ruby, `x` is a
