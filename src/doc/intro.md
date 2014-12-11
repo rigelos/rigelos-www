@@ -363,21 +363,16 @@ fn main() {
 }
 ```
 
-这个程序创建了10个线程, 这些线程全部打印`Hello, world!`。 The `spawn`
-function takes one argument, a `proc`. 'proc' is short for 'procedure,' and is
-a form of closure. This closure is executed in a new thread, created by `spawn`
-itself.
+这个程序创建了10个线程, 这些线程全部打印`Hello, world!`。 `spawn`
+函数需要一个参数`proc`。 'proc'是'procedure的简写,' 它是一个闭包的形式。 这个闭包在`spawn`创建的一个新线程内执行。
 
-One common form of problem in concurrent programs is a 'data race.' This occurs
-when two different threads attempt to access the same location in memory in a
-non-synchronized way, where at least one of them is a write. If one thread is
-attempting to read, and one thread is attempting to write, you cannot be sure
-that your data will not be corrupted. Note the first half of that requirement:
+在并发程序里面，一个普遍形式的问题是'数据竞争（data race）'。 这个会发生在两个线程非同步的形势下试图访问内存的同一块区域。, 至少有一个是写入操作。 
+如果一个线程是读，另外一个线程是写入，你将不确定你的数据会不会被破坏。 Note the first half of that requirement:
 two threads that attempt to access the same location in memory. Rust's
 ownership model can track which pointers own which memory locations, which
 solves this problem.
 
-Let's see an example. This Rust code will not compile:
+让我们看一个例子。 这段Rust代码不会被编译通过:
 
 ```{rust,ignore}
 fn main() {
@@ -391,7 +386,7 @@ fn main() {
 }
 ```
 
-It gives us this error:
+它会给出这个错误:
 
 ```{notrust,ignore}
 6:71 error: capture of moved value: `numbers`
