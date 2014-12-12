@@ -1,11 +1,8 @@
-% Rust Documentation
+% Rust文档工具
 
-`rustdoc` is the built-in tool for generating documentation. It integrates
-with the compiler to provide accurate hyperlinking between usage of types and
-their documentation. Furthermore, by not using a separate parser, it will
-never reject your valid Rust code.
+`rustdoc` 是内置的文档产生工具。它和编译提供超级链接在rust类型和他们文档之间。此外，它不使用单独的解析器，它不会拒绝你的任何Rust代码。
 
-# Creating Documentation
+# 创建文档
 
 Documenting Rust APIs is quite simple. To document a given item, we have "doc
 comments":
