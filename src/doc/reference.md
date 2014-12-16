@@ -2,33 +2,27 @@
 
 # 介绍
 
-This document is the primary reference for the Rust programming language. It
-provides three kinds of material:
+这个文档是Rust语言的参考手册。它提供了以下三个方面的内容：
 
-  - Chapters that formally define the language grammar and, for each
-    construct, informally describe its semantics and give examples of its
-    use.
-  - Chapters that informally describe the memory model, concurrency model,
-    runtime services, linkage model and debugging facilities.
-  - Appendix chapters providing rationale and references to languages that
-    influenced the design.
+  - 正式的定义语言的语法，for each结构，非正式地描述语法并给出使用的例子。
 
-This document does not serve as an introduction to the language. Background
-familiarity with the language is assumed. A separate [guide] is available to
-help acquire such background familiarity.
+  - 非正式的描述内存模型，并发模型，运行时服务，链接模型和调试工具。
 
-This document also does not serve as a reference to the [standard] library
-included in the language distribution. Those libraries are documented
-separately by extracting documentation attributes from their source code. Many
+  - 附录的章节，提供了影响语言设计的和相关的参考。
+
+这个文档不是一个语言的介绍。假定你对语言已经很熟悉了。如果想获取语言的背景知识，你可以查看[Rust开发指南 guide.html]。
+
+这个文档也不是语言发布的标准库的参考。这些库都通过抽取代码中的文档属性，各自文档化了。很多
+期望是语言本身的特性，实际上是Many
 of the features that one might expect to be language features are library
-features in Rust, so what you're looking for may be there, not here.
+features in Rust, 所以你应该在那里查找他们而不是这里。
 
-[guide]: guide.html
-[standard]: std/index.html
+[Rust开发指南]: guide.html
+[标准库API参考]: std/index.html
 
-# Notation
+# 标记法
 
-Rust's grammar is defined over Unicode codepoints, each conventionally denoted
+Rust的语法定义在Unicode字符上, each conventionally denoted
 `U+XXXX`, for 4 or more hexadecimal digits `X`. _Most_ of Rust's grammar is
 confined to the ASCII range of Unicode, and is described in this document by a
 dialect of Extended Backus-Naur Form (EBNF), specifically a dialect of EBNF
@@ -46,18 +40,18 @@ element : LITERAL | IDENTIFIER | '[' productionrule ']' ;
 repeats : [ '*' | '+' ] NUMBER ? | NUMBER ? | '?' ;
 ```
 
-Where:
+这里:
 
-- Whitespace in the grammar is ignored.
-- Square brackets are used to group rules.
-- `LITERAL` is a single printable ASCII character, or an escaped hexadecimal
+- 语法中的空白是被忽略的。
+- 中括号[]被用来分组规则。
+- `LITERAL` 是一单个可以打印的ASCII字符, or an escaped hexadecimal
   ASCII code of the form `\xQQ`, in single quotes, denoting the corresponding
   Unicode codepoint `U+00QQ`.
 - `IDENTIFIER` is a nonempty string of ASCII letters and underscores.
 - The `repeat` forms apply to the adjacent `element`, and are as follows:
-  - `?` means zero or one repetition
-  - `*` means zero or more repetitions
-  - `+` means one or more repetitions
+  - `?` 表示0次或者1次重复
+  - `*` 表示0次或更多次重复
+  - `+` 表示1次或更多次重复
   - NUMBER trailing a repeat symbol gives a maximum repetition count
   - NUMBER on its own gives an exact repetition count
 
@@ -86,9 +80,9 @@ When such a string enclosed in double-quotes (`"`) occurs inside the grammar,
 it is an implicit reference to a single member of such a string table
 production. See [tokens](#tokens) for more information.
 
-# Lexical structure
+# 字典结构
 
-## Input format
+## 输入格式
 
 Rust input is interpreted as a sequence of Unicode codepoints encoded in UTF-8.
 Most Rust grammar rules are defined in terms of printable ASCII-range
@@ -129,7 +123,7 @@ Some productions are defined by exclusion of particular Unicode characters:
 - `non_single_quote` is `non_null` restricted to exclude `U+0027`  (`'`)
 - `non_double_quote` is `non_null` restricted to exclude `U+0022` (`"`)
 
-## Comments
+## 注释
 
 ```{.ebnf .gram}
 comment : block_comment | line_comment ;
@@ -138,8 +132,7 @@ block_comment_body : [block_comment | character] * ;
 line_comment : "//" non_eol * ;
 ```
 
-Comments in Rust code follow the general C++ style of line and block-comment
-forms. Nested block comments are supported.
+Rust代码的行注释和块注释与C++的风格一样。也支持内置的块注释。
 
 Line comments beginning with exactly _three_ slashes (`///`), and block
 comments beginning with exactly one repeated asterisk in the block-open
@@ -154,7 +147,7 @@ index page.
 
 Non-doc comments are interpreted as a form of whitespace.
 
-## Whitespace
+## 空白字符
 
 ```{.ebnf .gram}
 whitespace_char : '\x20' | '\x09' | '\x0a' | '\x0d' ;
@@ -183,7 +176,7 @@ Tokens are primitive productions in the grammar defined by regular
 production](#string-table-productions) form, and occur in the rest of the
 grammar as double-quoted strings. Other tokens have exact rules given.
 
-### Keywords
+### 关键字
 
 <p id="keyword-table-marker"></p>
 
@@ -205,8 +198,7 @@ grammar as double-quoted strings. Other tokens have exact rules given.
 Each of these keywords has special meaning in its grammar, and all of them are
 excluded from the `ident` rule.
 
-Note that some of these keywords are reserved, and do not currently do
-anything.
+注意有些关键字是保留字，目前没有做任何事情。
 
 ### Literals
 
@@ -225,7 +217,7 @@ reserved for future extension, that is, the above gives the lexical
 grammar, but a Rust parser will reject everything but the 12 special
 cases mentioned in [Number literals](#number-literals) below.
 
-#### Examples
+#### 例子
 
 ##### Characters and strings
 
@@ -650,7 +642,7 @@ Users of `rustc` can define new syntax extensions in two ways:
 * [Macros](guide-macros.html) define new syntax in a higher-level,
   declarative way.
 
-## Macros
+## 宏
 
 ```{.ebnf .gram}
 expr_macro_rules : "macro_rules" '!' ident '(' macro_rule * ')' ;
@@ -735,7 +727,7 @@ Rust syntax is restricted in two ways:
 * `concat!` : concatenates a comma-separated list of literals
 * `concat_idents!` : create a new identifier by concatenating the arguments
 
-# Crates and source files
+# Crates和源代码
 
 Rust is a *compiled* language. Its semantics obey a *phase distinction*
 between compile-time and run-time. Those semantic rules that have a *static
@@ -1154,7 +1146,7 @@ fn id<T>(x: T) -> T { x }
 Similarly, [trait](#traits) bounds can be specified for type parameters to
 allow methods with that trait to be called on values of that type.
 
-#### Unsafety
+#### 不安全编程
 
 Unsafe operations are those that potentially violate the memory-safety
 guarantees of Rust's static semantics.
@@ -4023,7 +4015,7 @@ Sending operations are not part of the Rust language, but are implemented in
 the library. Generic functions that send values bound the kind of these values
 to sendable.
 
-# Memory and concurrency models
+# 内存和并非模型Memory and concurrency models
 
 Rust has a memory model centered around concurrently-executing _tasks_. Thus
 its memory model and its concurrency model are best discussed simultaneously,
@@ -4035,7 +4027,7 @@ order to support tasks; and when reading about tasks, keep in mind that their
 isolation and communication mechanisms are only possible due to the ownership
 and lifetime semantics of the memory model.
 
-## Memory model
+## 内存模型Memory model
 
 A Rust program's memory consists of a static set of *items*, a set of
 [tasks](#tasks) each with its own *stack*, and a *heap*. Immutable portions of
@@ -4044,7 +4036,7 @@ the heap may be shared between tasks, mutable portions may not.
 Allocations in the stack consist of *slots*, and allocations in the heap
 consist of *boxes*.
 
-### Memory allocation and lifetime
+### 内存分配和生命周期
 
 The _items_ of a program are those functions, modules and types that have their
 value calculated at compile-time and stored uniquely in the memory image of the
@@ -4059,7 +4051,7 @@ allocation in the heap depends on the lifetime of the box values pointing to
 it. Since box values may themselves be passed in and out of frames, or stored
 in the heap, heap allocations may outlive the frame they are allocated within.
 
-### Memory ownership
+### 内存所有权
 
 A task owns all memory it can *safely* reach through local variables, as well
 as boxes and references.
@@ -4132,14 +4124,14 @@ let y = x;
 // attempting to use `x` will result in an error here
 ```
 
-## Tasks
+## Task任务
 
 An executing Rust program consists of a tree of tasks. A Rust _task_ consists
 of an entry function, a stack, a set of outgoing communication channels and
 incoming communication ports, and ownership of some portion of the heap of a
 single operating-system process.
 
-### Communication between tasks
+### 任务之间通信
 
 Rust tasks are isolated and generally unable to interfere with one another's
 memory directly, except through [`unsafe` code](#unsafe-functions).  All
@@ -4153,7 +4145,7 @@ data structure can be mediated through its owning "root" value; no further
 locking or copying is required to avoid data races within the substructure of
 such a value.
 
-### Task lifecycle
+### 任务的生命周期
 
 The _lifecycle_ of a task consists of a finite set of states and events that
 cause transitions between the states. The lifecycle states of a task are:
@@ -4192,7 +4184,7 @@ A task in the *dead* state cannot transition to other states; it exists only to
 have its termination status inspected by other tasks, and/or to await
 reclamation when the last reference to it drops.
 
-# Runtime services, linkage and debugging
+# 运行时服务、链接及调试
 
 The Rust _runtime_ is a relatively compact collection of Rust code that
 provides fundamental services and datatypes to all Rust tasks at run-time. It
@@ -4200,7 +4192,7 @@ is smaller and simpler than many modern language runtimes. It is tightly
 integrated into the language's execution model of memory, tasks, communication
 and logging.
 
-### Memory allocation
+### 内存分配
 
 The runtime memory-management system is based on a _service-provider
 interface_, through which the runtime requests blocks of memory from its
@@ -4212,7 +4204,7 @@ The runtime memory-management system, in turn, supplies Rust tasks with
 facilities for allocating releasing stacks, as well as allocating and freeing
 heap data.
 
-### Built in types
+### 内置类型
 
 The runtime provides C and Rust code to assist with various built-in types,
 such as arrays, strings, and the low level communication system (ports,
@@ -4221,7 +4213,7 @@ channels, tasks).
 Support for other built-in types such as simple types, tuples and enums is
 open-coded by the Rust compiler.
 
-### Task scheduling and communication
+### Task调度和通信
 
 The runtime provides code to manage inter-task communication. This includes
 the system of task-lifecycle state transitions depending on the contents of
@@ -4229,7 +4221,7 @@ queues, as well as code to copy values between queues and their recipients and
 to serialize values for transmission over operating-system inter-process
 communication facilities.
 
-### Linkage
+### 链接
 
 The Rust compiler supports various methods to link crates together both
 statically and dynamically. This section will explore the various methods to
